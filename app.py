@@ -5,7 +5,6 @@ import torch
 import librosa
 import io
 from transformers import pipeline
-from audio_filing import transcribe_audio
 from streamlit_mic_recorder import mic_recorder
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
