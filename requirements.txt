@@ -1,0 +1,16 @@
+torch
+langchain-community
+langchain_huggingface
+langchain
+langsmith
+transformers 
+qdrant_client
+librosa
+transformers
+streamlit-mic-recorder
+langchain-qdrant
+streamlit
+bs4
+langchain-google-genai
+pillow
+python-dotenv
