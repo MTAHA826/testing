@@ -57,7 +57,7 @@ retriever = doc_store.as_retriever(search_type="mmr", search_kwargs={"k": num_ch
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 
-def convert raw_bytes_to_array(audiobytes):
+def convert_raw_bytes_to_array(audiobytes):
   audio_bytes=io.BytesIO(audiobytes)
   audio_array=librosa.load(audio_bytes)
   return audio_array
