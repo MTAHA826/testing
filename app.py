@@ -1,7 +1,7 @@
 import os
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
-from audio import transcribe_audio
+import audio
 from streamlit_mic_recorder import mic_recorder
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_huggingface import HuggingFaceEmbeddings
