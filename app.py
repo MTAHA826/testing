@@ -67,7 +67,7 @@ def transcribe_audio(audiobytes):
   pipe=pipeline(
     task="automatic-speech-recognition",
     model="openai/wisper-small",
-    chunk_length_s=30
+    chunk_length_s=30,
     device=device
   )
   audioArray=raw_bytes_to_array(audiobytes)
