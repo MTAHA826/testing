@@ -1,6 +1,10 @@
 import os
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
+import torch
+import librosa
+import io
+from transformers import pipeline
 from audio_filing import transcribe_audio
 from streamlit_mic_recorder import mic_recorder
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -54,6 +58,22 @@ retriever = doc_store.as_retriever(search_type="mmr", search_kwargs={"k": num_ch
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
 
+def convert raw_bytes_to_array(audiobytes):
+  audio_bytes=io.BytesIO(audiobytes)
+  audio_array=librosa.load(audio_bytes)
+  return audio_array
+
+def transcribe_audio(audiobytes):
+  device="cuda:0" if torch.cuda.is_available() else "cpu"
+  pipe=pipeline(
+    task="automatic-speech-recognition",
+    model="openai/wisper-small",
+    chunk_length_s=30
+    device=device
+  )
+  audioArray=raw_bytes_to_array(audiobytes)
+  prediction=pipe(aduioArray,batch_size=1)["text"]
+  return prediction
 prompt_str = """
 You are a highly knowledgeable and conversational chatbot specializing in providing accurate and insightful information about Elon Musk.
 Answer all questions as if you are an expert on his life, career, companies, and achievements.
